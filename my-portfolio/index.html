@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8" />
+   <met name="viewport" content="width=device-width,initial-scal=1" />
+   <title> Your name - Portfolio</title>
+   <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class ="brand"> Your Name</div>
+    <nav class="main-nav" aria-label="Main menu">
+       <button class="menu-item active" data-target="home">Home</button>
+       <button class="menu-item" data-target="projects">Projects</button>
+       <button class="menu-item" data-target="info">Info</button>
+       <button class="menu-item" data-target="about">About</button>
+    </nav>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+  </header>
+
+  <main class="container">
+    <!-- HOME -->
+    <section id="home" class="tab-content">
+      <div class="hero">
+        <picture>
+          <source media="(max-width:600px)" srcset="images/profile-small.jpg">
+          <img src="images/profile.jpg" alt="Your photo" class="profile-pic">
+        </picture>
+        <div class="hero-text">
+          <h1>Hello — I'm Your Name</h1>
+          <p class="tagline" id="typewriter">Web developer • problem solver • learner</p>
+          <p>Short intro text about who you are, what you do and what you want others to know.</p>
+        </div>
+      </div>
+
+      <section class="skills">
+        <h2>Skills</h2>
+        <div class="skill">
+          <div class="skill-label">JavaScript</div>
+          <div class="progress" data-percent="85"><div class="progress-fill"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-label">HTML & CSS</div>
+          <div class="progress" data-percent="90"><div class="progress-fill"></div></div>
+        </div>
+      </section>
+    </section>
+
+    <!-- PROJECTS (must contain at least 5 JS dynamic effects) -->
+    <section id="projects" class="tab-content hidden">
+      <h2>Projects & Interactive demos</h2>
+
+      <!-- 1) Carousel -->
+      <div class="carousel" id="carousel">
+        <button class="carousel-btn prev" aria-label="Previous">‹</button>
+        <div class="slides">
+          <img class="slide" src="images/project1.jpg" alt="Project 1">
+          <img class="slide" src="images/project2.jpg" alt="Project 2">
+          <img class="slide" src="images/project3.jpg" alt="Project 3">
+        </div>
+        <button class="carousel-btn next" aria-label="Next">›</button>
+      </div>
+
+      <!-- 2) Filterable gallery -->
+      <div class="gallery-controls">
+        <button class="filter-btn" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="game">Game</button>
+      </div>
+      <div class="gallery" id="gallery">
+        <div class="card" data-category="web"><img src="images/project1.jpg" alt=""><p>Web App 1</p></div>
+        <div class="card" data-category="web"><img src="images/project2.jpg" alt=""><p>Web App 2</p></div>
+        <div class="card" data-category="game"><img src="images/project3.jpg" alt=""><p>Game 1</p></div>
+      </div>
+
+      <!-- 3) Modal/lightbox (click a card to open) -->
+      <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="modal-inner">
+          <button id="modal-close" class="modal-close" aria-label="Close">✕</button>
+          <img id="modal-img" src="" alt="">
+          <div id="modal-desc"></div>
+        </div>
+      </div>
+
+      <!-- 4) Animated progress counters inside projects -->
+      <div class="project-metrics">
+        <h3>Project metrics (animated)</h3>
+        <div class="metric"><span class="metric-num" data-target="120">0</span><div>Commits</div></div>
+        <div class="metric"><span class="metric-num" data-target="30">0</span><div>Projects</div></div>
+      </div>
+
+      <!-- 5) Typewriter or small interactive demo -->
+      <div class="mini-demo">
+        <h3>Typewriter demo</h3>
+        <p id="typewriter-project"></p>
+      </div>
+    </section>
+
+    <!-- INFO (professional experiences, skills) -->
+    <section id="info" class="tab-content hidden">
+      <h2>Professional Info</h2>
+      <article class="experience">
+        <h3>Role — Company</h3>
+        <p>Dates · Short description of responsibilities and accomplishments.</p>
+      </article>
+      <section class="more-skills">
+        <h3>Skills & Expertise</h3>
+        <ul>
+          <li>JavaScript (vanilla) — DOM, events, async</li>
+          <li>HTML5 / CSS3 — responsive design</li>
+          <li>Git / GitHub — Pages hosting</li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- ABOUT (hobbies, club activities) -->
+    <section id="about" class="tab-content hidden">
+      <h2>About Me</h2>
+      <p>What I want others to know — hobbies, clubs, activities.</p>
+      <img src="images/hobby.jpg" alt="Hobby picture" class="about-img">
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Your Name — Built with HTML/CSS/JS</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
