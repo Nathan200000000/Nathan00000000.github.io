@@ -1,1 +1,1 @@
-![Alt text](my-portfolio/images/I.jpg)
+![Alt text](I.jpg)
