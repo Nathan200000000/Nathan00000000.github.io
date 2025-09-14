@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="utf-8" />
-   <met name="viewport" content="width=device-width,initial-scal=1" />
-   <title> Nathan's - Portfolio</title>
-   <link rel="stylesheet" href="css/style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nathan&#39;s Portfolio</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header class="site-header">
-    <div class ="brand"> Nathan </div>
+    <div class="brand">Nathan</div>
     <nav class="main-nav" aria-label="Main menu">
-       <button class="menu-item active" data-target="home">Home</button>
-       <button class="menu-item" data-target="projects">Projects</button>
-       <button class="menu-item" data-target="info">Info</button>
-       <button class="menu-item" data-target="about">About</button>
+      <ul>
+        <li><button class="menu-item active" data-target="home">Home</button></li>
+        <li><button class="menu-item" data-target="projects">Projects</button></li>
+        <li><button class="menu-item" data-target="info">Info</button></li>
+        <li><button class="menu-item" data-target="about">About</button></li>
+      </ul>
     </nav>
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+      <span aria-hidden="true">🌙</span>
+    </button>
   </header>
 
   <main class="container">
@@ -24,17 +28,16 @@
       <div class="hero">
         <picture>
           <source media="(max-width:600px)" srcset="images/profile-small.jpg">
-          <img src="images/profile.jpg" alt="My profile picture" class="profile-pic">
+          <img src="images/profile.jpg" alt="My profile picture" class="profile-pic" loading="lazy">
         </picture>
         <div class="hero-text">
-          <h1>Hello — I'm Nathan </h1>
+          <h1>Hello — I'm Nathan</h1>
           <p class="tagline" id="typewriter">Web developer • problem solver • learner</p>
-          <p>🔥 Yo, I’m Nathan Code-slinger • Creative thinker • Digital builder I craft sleek, responsive websites that don’t just look good—they feel good. I’m all about solving real problems with clean code and clever design. Whether it’s front-end magic or back-end muscle, I bring ideas to life and keep the vibe fresh.
-              I’m here to build, learn, and level up.</p>
+          <p>🔥 Yo, I’m Nathan — Code-slinger • Creative thinker • Digital builder. I craft sleek, responsive websites that don’t just look good—they feel good. I’m all about solving real problems with clean code and clever design. Whether it’s front-end magic or back-end muscle, I bring ideas to life and keep the vibe fresh. I’m here to build, learn, and level up.</p>
         </div>
       </div>
 
-      <section class="skills">
+      <div class="skills">
         <h2>Skills</h2>
         <div class="skill">
           <div class="skill-label">JavaScript</div>
@@ -44,42 +47,51 @@
           <div class="skill-label">HTML & CSS</div>
           <div class="progress" data-percent="90"><div class="progress-fill"></div></div>
         </div>
-      </section>
+      </div>
     </section>
 
-    <!-- PROJECTS (must contain at least 5 JS dynamic effects) -->
+    <!-- PROJECTS -->
     <section id="projects" class="tab-content hidden">
       <h2 style="background:linear-gradient(90deg,#58a6ff,#a371f7);
-                -webkit-background-clip:text;
-                background-clip:text;
-                color:transparent;">
-    Projects & Interactive demos
-  </h2>
+                 -webkit-background-clip:text;
+                 background-clip:text;
+                 color:transparent;">
+        Projects & Interactive demos
+      </h2>
 
-      <!-- 1) Carousel -->
+      <!-- Carousel -->
       <div class="carousel" id="carousel">
         <button class="carousel-btn prev" aria-label="Previous">‹</button>
         <div class="slides">
-          <img class="slide" src="images/aVYKeW.webp" alt="Project 1"> 
-          <img class="slide" src="images/wp4844671-green-computer-wallpapers.jpg" alt="Project 2">
-          <img class="slide" src="images/profile1.jpg" alt="Project 3">
+          <img class="slide" src="images/aVYKeW.webp" alt="Project 1 screenshot"> 
+          <img class="slide" src="images/wp4844671-green-computer-wallpapers.jpg" alt="Project 2 screenshot">
+          <img class="slide" src="images/profile1.jpg" alt="Project 3 screenshot">
         </div>
         <button class="carousel-btn next" aria-label="Next">›</button>
       </div>
 
-      <!-- 2) Filterable gallery -->
+      <!-- Filterable gallery -->
       <div class="gallery-controls">
         <button class="filter-btn" data-filter="all">All</button>
         <button class="filter-btn" data-filter="web">Web</button>
         <button class="filter-btn" data-filter="game">Game</button>
       </div>
       <div class="gallery" id="gallery">
-        <div class="card" data-category="web"><img src="images/aVYKeW.webp" alt=""><p>Web App 1</p></div>
-        <div class="card" data-category="web"><img src="images/wp4844671-green-computer-wallpapers.jpg" alt=""><p>Web App 2</p></div>
-        <div class="card" data-category="game"><img src="images/profile1.jpg" alt=""><p>Game 1</p></div>
+        <div class="card" data-category="web">
+          <img src="images/aVYKeW.webp" alt="Web App 1 screenshot">
+          <p>Web App 1</p>
+        </div>
+        <div class="card" data-category="web">
+          <img src="images/wp4844671-green-computer-wallpapers.jpg" alt="Web App 2 screenshot">
+          <p>Web App 2</p>
+        </div>
+        <div class="card" data-category="game">
+          <img src="images/profile1.jpg" alt="Game 1 screenshot">
+          <p>Game 1</p>
+        </div>
       </div>
 
-      <!-- 3) Modal/lightbox (click a card to open) -->
+      <!-- Modal/lightbox -->
       <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
         <div class="modal-inner">
           <button id="modal-close" class="modal-close" aria-label="Close">✕</button>
@@ -88,21 +100,21 @@
         </div>
       </div>
 
-      <!-- 4) Animated progress counters inside projects -->
+      <!-- Animated counters -->
       <div class="project-metrics">
         <h3>Project metrics (animated)</h3>
         <div class="metric"><span class="metric-num" data-target="120">0</span><div>Commits</div></div>
         <div class="metric"><span class="metric-num" data-target="30">0</span><div>Projects</div></div>
       </div>
 
-      <!-- 5) Typewriter or small interactive demo -->
+      <!-- Typewriter demo -->
       <div class="mini-demo">
         <h3>Typewriter demo</h3>
         <p id="typewriter-project"></p>
       </div>
     </section>
 
-    <!-- INFO (professional experiences, skills) -->
+    <!-- INFO -->
     <section id="info" class="tab-content hidden">
       <h2>Professional Info</h2>
       <article class="experience">
@@ -119,14 +131,14 @@
       </section>
     </section>
 
-    <!-- ABOUT (hobbies, club activities) -->
+    <!-- ABOUT -->
     <section id="about" class="tab-content hidden">
       <h2>About Me</h2>
-      <p> 🎮 Outside the Code When I’m not debugging or building something new, you’ll probably find me in the game zone—whether that’s designing interfaces in GUI & Game Programming or just vibing with indie titles and classic RPGs.
-
-🏐 Team Player IRL I play intramural soccer at UIndy. It’s not just about winning (though that’s nice)—it’s about teamwork, energy, and having a blast with friends.
-
-🎧 Always Learning Whether it’s philosophy class debates or late-night YouTube deep dives into tech trends, I’m constantly exploring new ideas and perspectives.</p>
+      <p>
+        🎮 <strong>Outside the Code</strong> — When I’m not debugging or building something new, you’ll probably find me in the game zone—whether that’s designing interfaces in GUI & Game Programming or just vibing with indie titles and classic RPGs.<br><br>
+        🏐 <strong>Team Player IRL</strong> — I play intramural soccer at UIndy. It’s not just about winning (though that’s nice)—it’s about teamwork, energy, and having a blast with friends.<br><br>
+        🎧 <strong>Always Learning</strong> — Whether it’s philosophy class debates or late-night YouTube deep dives into tech trends, I’m constantly exploring new ideas and perspectives.
+      </p>
     </section>
   </main>
 
