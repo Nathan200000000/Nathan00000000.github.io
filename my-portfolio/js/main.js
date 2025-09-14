@@ -1,9 +1,8 @@
-// Basic helpers
 const $ = sel => document.querySelector(sel);
 const $$ = sel => Array.from(document.querySelectorAll(sel));
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1) Tab switching
+  // Tab switching
   const tabs = $$('.menu-item');
   const sections = $$('.tab-content');
   const showTab = id => {
@@ -14,10 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
   tabs.forEach(t => t.addEventListener('click', () => showTab(t.dataset.target)));
   showTab('home');
 
-  // 2) Set copyright year
+  // Set current year
   $('#year').textContent = new Date().getFullYear();
 
-  // 3) Typewriter effect on home
+  // Typewriter effect (Home)
   (function typewriterHome() {
     const el = $('#typewriter');
     if (!el) return;
@@ -30,14 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 40);
   })();
 
-  // 4) Carousel
+  // Carousel
   (function carousel() {
     const slides = $$('.slide');
     if (!slides.length) return;
     let idx = 0;
-    const show = n => {
-      slides.forEach((s, i) => s.classList.toggle('active', i === n));
-    };
+    const show = n => slides.forEach((s, i) => s.classList.toggle('active', i === n));
     show(idx);
     const next = () => { idx = (idx + 1) % slides.length; show(idx); };
     const prev = () => { idx = (idx - 1 + slides.length) % slides.length; show(idx); };
@@ -48,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#carousel')?.addEventListener('mouseleave', () => auto = setInterval(next, 4000));
   })();
 
-  // 5) Gallery filter + modal
+  // Gallery filter & modal
   (function galleryFilterModal() {
     const buttons = $$('.filter-btn');
     const cards = $$('.gallery .card');
@@ -68,48 +65,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cards.forEach(card => {
       card.addEventListener('click', () => {
-        const img = card.querySelector('img')?.src;
-        const text = card.querySelector('p')?.textContent || '';
-        modalImg.src = img || '';
-        modalDesc.textContent = text;
+        modalImg.src = card.querySelector('img')?.src || '';
+        modalDesc.textContent = card.querySelector('p')?.textContent || '';
         modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
-        modal.setAttribute('aria-hidden', 'false');
       });
     });
 
     const closeModal = () => {
       modal.classList.add('hidden');
       document.body.style.overflow = '';
-      modal.setAttribute('aria-hidden', 'true');
     };
-
     modalClose?.addEventListener('click', closeModal);
-
     modal.addEventListener('click', e => {
       if (!e.target.closest('.modal-inner')) closeModal();
     });
-
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-        closeModal();
-      }
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
     });
   })();
 
-  // 6) Project animations
+  // Project animations
   function startProjectAnimations() {
-    // Progress bars
     $$('.progress').forEach(p => {
       const fill = p.querySelector('.progress-fill');
-      const pct = +p.dataset.percent || 60;
-      fill.style.width = pct + '%';
+      fill.style.width = (p.dataset.percent || 60) + '%';
     });
-
-    // Metric counters
     $$('.metric-num').forEach(el => {
       const target = +el.dataset.target || 0;
-      el.textContent = '0';
       let cur = 0;
       const step = Math.max(1, Math.floor(target / 60));
       const timer = setInterval(() => {
@@ -122,8 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }, 20);
     });
-
-    // Typewriter in projects
     const tpEl = $('#typewriter-project');
     if (tpEl) {
       const txt = "Click a gallery item to open the lightbox. Filter projects by category.";
@@ -136,19 +117,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 7) Theme toggle with persistence
+  // Theme toggle
   const root = document.documentElement;
   const toggleTheme = () => {
     const dark = root.classList.toggle('dark');
     localStorage.setItem('theme', dark ? 'dark' : 'light');
-    root.style.setProperty('--bg', dark ? '#121212' : '');
-    root.style.setProperty('--text', dark ? '#eee' : '');
   };
   $('#theme-toggle')?.addEventListener('click', toggleTheme);
+  if (localStorage.getItem('theme') === 'dark') root.classList.add('dark');
 
-  if (localStorage.getItem('theme') === 'dark') {
-    root.classList.add('dark');
-    root.style.setProperty('--bg', '#121212');
-    root.style.setProperty('--text', '#eee');
-  }
+  // Reveal on scroll
+  const revealEls = $$('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target); // Optional: stop observing once revealed
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+  revealEls.forEach(el => obs.observe(el));
 });

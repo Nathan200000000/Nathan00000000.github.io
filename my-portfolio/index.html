@@ -4,6 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nathan&#39;s Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -24,7 +27,7 @@
 
   <main class="container">
     <!-- HOME -->
-    <section id="home" class="tab-content">
+    <section id="home" class="tab-content reveal">
       <div class="hero">
         <picture>
           <source media="(max-width:600px)" srcset="images/profile-small.jpg">
@@ -33,7 +36,7 @@
         <div class="hero-text">
           <h1>Hello — I'm Nathan</h1>
           <p class="tagline" id="typewriter">Web developer • problem solver • learner</p>
-          <p>🔥 Yo, I’m Nathan — Code-slinger • Creative thinker • Digital builder. I craft sleek, responsive websites that don’t just look good—they feel good. I’m all about solving real problems with clean code and clever design. Whether it’s front-end magic or back-end muscle, I bring ideas to life and keep the vibe fresh. I’m here to build, learn, and level up.</p>
+          <p>🔥 Yo, I’m Nathan — Code-slinger • Creative thinker • Digital builder...</p>
         </div>
       </div>
 
@@ -51,15 +54,9 @@
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects" class="tab-content hidden">
-      <h2 style="background:linear-gradient(90deg,#58a6ff,#a371f7);
-                 -webkit-background-clip:text;
-                 background-clip:text;
-                 color:transparent;">
-        Projects & Interactive demos
-      </h2>
+    <section id="projects" class="tab-content hidden reveal">
+      <h2 class="gradient-text">Projects & Interactive demos</h2>
 
-      <!-- Carousel -->
       <div class="carousel" id="carousel">
         <button class="carousel-btn prev" aria-label="Previous">‹</button>
         <div class="slides">
@@ -70,44 +67,40 @@
         <button class="carousel-btn next" aria-label="Next">›</button>
       </div>
 
-      <!-- Filterable gallery -->
       <div class="gallery-controls">
         <button class="filter-btn" data-filter="all">All</button>
         <button class="filter-btn" data-filter="web">Web</button>
         <button class="filter-btn" data-filter="game">Game</button>
       </div>
       <div class="gallery" id="gallery">
-        <div class="card" data-category="web">
+        <div class="card tilt" data-category="web">
           <img src="images/aVYKeW.webp" alt="Web App 1 screenshot">
           <p>Web App 1</p>
         </div>
-        <div class="card" data-category="web">
+        <div class="card tilt" data-category="web">
           <img src="images/wp4844671-green-computer-wallpapers.jpg" alt="Web App 2 screenshot">
           <p>Web App 2</p>
         </div>
-        <div class="card" data-category="game">
+        <div class="card tilt" data-category="game">
           <img src="images/profile1.jpg" alt="Game 1 screenshot">
           <p>Game 1</p>
         </div>
       </div>
 
-      <!-- Modal/lightbox -->
       <div id="modal" class="modal hidden" role="dialog" aria-modal="true" tabindex="-1">
-        <div class="modal-inner">
+        <div class="modal-inner glass">
           <button id="modal-close" class="modal-close" aria-label="Close">✕</button>
           <img id="modal-img" src="" alt="">
           <div id="modal-desc"></div>
         </div>
       </div>
 
-      <!-- Animated counters -->
       <div class="project-metrics">
         <h3>Project metrics (animated)</h3>
         <div class="metric"><span class="metric-num" data-target="120">0</span><div>Commits</div></div>
         <div class="metric"><span class="metric-num" data-target="30">0</span><div>Projects</div></div>
       </div>
 
-      <!-- Typewriter demo -->
       <div class="mini-demo">
         <h3>Typewriter demo</h3>
         <p id="typewriter-project"></p>
@@ -115,7 +108,7 @@
     </section>
 
     <!-- INFO -->
-    <section id="info" class="tab-content hidden">
+    <section id="info" class="tab-content hidden reveal">
       <h2>Professional Info</h2>
       <article class="experience">
         <h3>Role — Company</h3>
@@ -132,13 +125,9 @@
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="tab-content hidden">
+    <section id="about" class="tab-content hidden reveal">
       <h2>About Me</h2>
-      <p>
-        🎮 <strong>Outside the Code</strong> — When I’m not debugging or building something new, you’ll probably find me in the game zone—whether that’s designing interfaces in GUI & Game Programming or just vibing with indie titles and classic RPGs.<br><br>
-        🏐 <strong>Team Player IRL</strong> — I play intramural soccer at UIndy. It’s not just about winning (though that’s nice)—it’s about teamwork, energy, and having a blast with friends.<br><br>
-        🎧 <strong>Always Learning</strong> — Whether it’s philosophy class debates or late-night YouTube deep dives into tech trends, I’m constantly exploring new ideas and perspectives.
-      </p>
+      <p>🎮 <strong>Outside the Code</strong> — ...</p>
     </section>
   </main>
 
