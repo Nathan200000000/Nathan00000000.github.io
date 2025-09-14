@@ -2,7 +2,9 @@ const $ = sel => document.querySelector(sel);
 const $$ = sel => Array.from(document.querySelectorAll(sel));
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Tab switching
+  const root = document.documentElement;
+
+  // === TAB SWITCHING ===
   const tabs = $$('.menu-item');
   const sections = $$('.tab-content');
   const showTab = id => {
@@ -13,10 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
   tabs.forEach(t => t.addEventListener('click', () => showTab(t.dataset.target)));
   showTab('home');
 
-  // Set current year
+  // === CURRENT YEAR ===
   $('#year').textContent = new Date().getFullYear();
 
-  // Typewriter effect (Home)
+  // === TYPEWRITER (HOME) ===
   (function typewriterHome() {
     const el = $('#typewriter');
     if (!el) return;
@@ -29,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 40);
   })();
 
-  // Carousel
+  // === CAROUSEL ===
   (function carousel() {
     const slides = $$('.slide');
     if (!slides.length) return;
@@ -45,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#carousel')?.addEventListener('mouseleave', () => auto = setInterval(next, 4000));
   })();
 
-  // Gallery filter & modal
+  // === GALLERY FILTER & MODAL ===
   (function galleryFilterModal() {
     const buttons = $$('.filter-btn');
     const cards = $$('.gallery .card');
@@ -85,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   })();
 
-  // Project animations
+  // === PROJECT ANIMATIONS ===
   function startProjectAnimations() {
     $$('.progress').forEach(p => {
       const fill = p.querySelector('.progress-fill');
@@ -117,26 +119,132 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Theme toggle
-  const root = document.documentElement;
-  const toggleTheme = () => {
+  // === THEME TOGGLE ===
+  $('#theme-toggle')?.addEventListener('click', () => {
     const dark = root.classList.toggle('dark');
     localStorage.setItem('theme', dark ? 'dark' : 'light');
-  };
-  $('#theme-toggle')?.addEventListener('click', toggleTheme);
+  });
   if (localStorage.getItem('theme') === 'dark') root.classList.add('dark');
 
-  // Reveal on scroll
+  // === TIME CAPSULE / CYBERPUNK TOGGLE ===
+  $('#time-capsule-toggle')?.addEventListener('click', () => {
+    document.body.classList.toggle('cyberpunk');
+    document.body.classList.toggle('time-capsule');
+  });
+
+  // === AI AVATAR INTERACTIVITY ===
+  (function aiAvatar() {
+    const avatar = $('#ai-avatar');
+    const bubble = avatar?.querySelector('.speech-bubble');
+    if (!avatar || !bubble) return;
+    const phrases = [
+      "Need help with a project?",
+      "Ask me about my skills!",
+      "Want to see something cool?",
+      "Try saying 'Go to Projects'"
+    ];
+    let i = 0;
+    setInterval(() => {
+      bubble.textContent = phrases[i++ % phrases.length];
+    }, 4000);
+  })();
+
+  // === VOICE NAVIGATION ===
+  (function voiceNav() {
+    if (!('webkitSpeechRecognition' in window)) return;
+    const recognition = new webkitSpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
+    recognition.onresult = e => {
+      const command = e.results[0][0].transcript.toLowerCase();
+      if (command.includes('home')) showTab('home');
+      if (command.includes('projects')) showTab('projects');
+      if (command.includes('info')) showTab('info');
+      if (command.includes('about')) showTab('about');
+    };
+    document.addEventListener('keydown', e => {
+      if (e.key === 'v') recognition.start(); // Press 'v' to activate voice
+    });
+  })();
+
+  // === LIVE CODE EDITOR ===
+  (function liveEditor() {
+    const input = $('#code-input');
+    const output = $('#code-output');
+    if (!input || !output) return;
+    const updateOutput = () => {
+      const html = input.value;
+      const blob = new Blob([html], { type: 'text/html' });
+      output.src = URL.createObjectURL(blob);
+    };
+    input.addEventListener('input', updateOutput);
+    updateOutput();
+  })();
+
+  // === TILT EFFECTS ===
+  (function tiltCards() {
+    $$('.tilt').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const rotateX = (y / rect.height - 0.5) * -20;
+        const rotateY = (x / rect.width - 0.5) * 20;
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+      });
+    });
+  })();
+
+  // === CANVAS BACKGROUND ===
+  (function animatedCanvas() {
+    const canvas = $('#background-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    const stars = Array.from({ length: 100 }, () => ({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      r: Math.random() * 1.5 + 0.5,
+      dx: Math.random() * 0.5 + 0.2
+    }));
+    const resize = () => {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', resize);
+    resize();
+
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = '#00ffe7';
+      stars.forEach(s => {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+        s.x -= s.dx;
+        if (s.x < 0) {
+          s.x = w;
+          s.y = Math.random() * h;
+        }
+      });
+      requestAnimationFrame(draw);
+    };
+    draw();
+  })();
+
+  // === REVEAL ON SCROLL ===
   const revealEls = $$('.reveal');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        obs.unobserve(entry.target); // Optional: stop observing once revealed
+        obs.unobserve(entry.target);
       }
     });
-  }, {
-    threshold: 0.1
-  });
+  }, { threshold: 0.1 });
   revealEls.forEach(el => obs.observe(el));
 });

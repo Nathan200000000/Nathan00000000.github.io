@@ -3,13 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nathan&#39;s Portfolio</title>
+  <title>Nathan's Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <!-- Animated Background -->
+  <canvas id="background-canvas"></canvas>
+
+  <!-- Header -->
   <header class="site-header">
     <div class="brand">Nathan</div>
     <nav class="main-nav" aria-label="Main menu">
@@ -20,11 +24,19 @@
         <li><button class="menu-item" data-target="about">About</button></li>
       </ul>
     </nav>
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-      <span aria-hidden="true">🌙</span>
-    </button>
+    <div class="theme-controls">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+      <button id="time-capsule-toggle" class="theme-toggle" aria-label="Toggle Time Capsule">🕰️</button>
+    </div>
   </header>
 
+  <!-- AI Avatar Assistant -->
+  <div id="ai-avatar" class="floating-avatar">
+    <img src="images/avatar.gif" alt="AI Nathan" />
+    <div class="speech-bubble">Ask me anything!</div>
+  </div>
+
+  <!-- Main Content -->
   <main class="container">
     <!-- HOME -->
     <section id="home" class="tab-content reveal">
@@ -36,7 +48,7 @@
         <div class="hero-text">
           <h1>Hello — I'm Nathan</h1>
           <p class="tagline" id="typewriter">Web developer • problem solver • learner</p>
-          <p>🔥 Yo, I’m Nathan — Code-slinger • Creative thinker • Digital builder...</p>
+          <p>🔥 Code-slinger • Creative thinker • Digital builder</p>
         </div>
       </div>
 
@@ -57,6 +69,7 @@
     <section id="projects" class="tab-content hidden reveal">
       <h2 class="gradient-text">Projects & Interactive demos</h2>
 
+      <!-- Carousel -->
       <div class="carousel" id="carousel">
         <button class="carousel-btn prev" aria-label="Previous">‹</button>
         <div class="slides">
@@ -67,11 +80,14 @@
         <button class="carousel-btn next" aria-label="Next">›</button>
       </div>
 
+      <!-- Gallery Filter -->
       <div class="gallery-controls">
         <button class="filter-btn" data-filter="all">All</button>
         <button class="filter-btn" data-filter="web">Web</button>
         <button class="filter-btn" data-filter="game">Game</button>
       </div>
+
+      <!-- Gallery -->
       <div class="gallery" id="gallery">
         <div class="card tilt" data-category="web">
           <img src="images/aVYKeW.webp" alt="Web App 1 screenshot">
@@ -87,6 +103,7 @@
         </div>
       </div>
 
+      <!-- Modal -->
       <div id="modal" class="modal hidden" role="dialog" aria-modal="true" tabindex="-1">
         <div class="modal-inner glass">
           <button id="modal-close" class="modal-close" aria-label="Close">✕</button>
@@ -95,15 +112,24 @@
         </div>
       </div>
 
+      <!-- Project Metrics -->
       <div class="project-metrics">
-        <h3>Project metrics (animated)</h3>
+        <h3>Project metrics</h3>
         <div class="metric"><span class="metric-num" data-target="120">0</span><div>Commits</div></div>
         <div class="metric"><span class="metric-num" data-target="30">0</span><div>Projects</div></div>
       </div>
 
+      <!-- Typewriter Demo -->
       <div class="mini-demo">
         <h3>Typewriter demo</h3>
         <p id="typewriter-project"></p>
+      </div>
+
+      <!-- Live Code Editor -->
+      <div class="live-editor">
+        <h3>Live Code Editor</h3>
+        <textarea id="code-input">// Write your code here</textarea>
+        <iframe id="code-output"></iframe>
       </div>
     </section>
 
@@ -131,10 +157,12 @@
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <p>© <span id="year"></span> Nathan — Built with HTML/CSS/JS</p>
   </footer>
 
+  <!-- Scripts -->
   <script src="js/main.js"></script>
 </body>
 </html>
