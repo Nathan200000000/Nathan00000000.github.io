@@ -1,3 +1,2 @@
-![Alt text](I.jpg)
-![Alt text](1.jpg)
+![Alt text](l.jpg)
 ![Alt text](Cool.jpg)
