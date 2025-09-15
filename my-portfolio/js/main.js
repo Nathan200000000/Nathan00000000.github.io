@@ -143,40 +143,21 @@ document.addEventListener('DOMContentLoaded', () => {
     body.classList.toggle('time-capsule', isCyber);
   });
 
-  // === AI AVATAR ===
-  (function aiAvatar() {
-    const avatar = $('#ai-avatar');
-    const bubble = avatar?.querySelector('.speech-bubble');
-    if (!avatar || !bubble) return;
+  // === TEXT-ONLY AI HELPER ===
+  (function aiHelper() {
+    const bubble = document.getElementById('ai-text');
+    if (!bubble) return;
+
     const phrases = [
       "Need help with a project?",
       "Ask me about my skills!",
       "Want to see something cool?",
-      "Try saying 'Go to Projects'"
+      "Click a tab to explore my work"
     ];
     let i = 0;
     setInterval(() => {
       bubble.textContent = phrases[i++ % phrases.length];
     }, 4000);
-  })();
-
-  // === VOICE NAVIGATION ===
-  (function voiceNav() {
-    if (!('webkitSpeechRecognition' in window)) return;
-    const recognition = new webkitSpeechRecognition();
-    recognition.continuous = false;
-    recognition.interimResults = false;
-    recognition.lang = 'en-US';
-    recognition.onresult = e => {
-      const command = e.results[0][0].transcript.toLowerCase();
-      if (command.includes('home')) showTab('home');
-      if (command.includes('projects')) showTab('projects');
-      if (command.includes('info')) showTab('info');
-      if (command.includes('about')) showTab('about');
-    };
-    document.addEventListener('keydown', e => {
-      if (e.key === 'v') recognition.start();
-    });
   })();
 
   // === LIVE CODE EDITOR ===

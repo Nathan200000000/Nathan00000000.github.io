@@ -253,26 +253,20 @@ header.site-header {
 }
 
 /* === AI AVATAR === */
-#ai-avatar {
+  .floating-helper {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  z-index: 3000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  animation: float 3s ease-in-out infinite;
+  z-index: 1000;
+  background: var(--glass-bg, rgba(255,255,255,0.8));
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
 }
-.speech-bubble {
-  margin-top: 0.5rem;
-  background: var(--bg2);
-  color: var(--accent);
-  padding: 0.6rem 1rem;
-  border-radius: var(--radius);
-  font-size: 0.9rem;
-  box-shadow: 0 0 10px rgba(88,166,255,0.3);
-  transition: background 0.3s ease, color 0.3s ease;
-}
+
+
 @keyframes float {
   0%   { transform: translateY(0); }
   50%  { transform: translateY(-20px); }
