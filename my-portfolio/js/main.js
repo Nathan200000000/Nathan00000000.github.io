@@ -9,7 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const sections = $$('.tab-content');
   const showTab = id => {
     sections.forEach(s => s.id === id ? s.classList.remove('hidden') : s.classList.add('hidden'));
-    tabs.forEach(t => t.dataset.target === id ? t.classList.add('active') : t.classList.remove('active'));
+    tabs.forEach(t => {
+      const isActive = t.dataset.target === id;
+      t.classList.toggle('active', isActive);
+      t.setAttribute('aria-selected', isActive);
+    });
     if (id === 'projects') startProjectAnimations();
   };
   tabs.forEach(t => t.addEventListener('click', () => showTab(t.dataset.target)));
@@ -67,7 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cards.forEach(card => {
       card.addEventListener('click', () => {
-        modalImg.src = card.querySelector('img')?.src || '';
+        const img = card.querySelector('img');
+        modalImg.src = img?.src || 'images/fallback.jpg';
+        modalImg.alt = img?.alt || 'Project image';
         modalDesc.textContent = card.querySelector('p')?.textContent || '';
         modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
@@ -128,8 +134,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // === TIME CAPSULE / CYBERPUNK TOGGLE ===
   $('#time-capsule-toggle')?.addEventListener('click', () => {
-    document.body.classList.toggle('cyberpunk');
-    document.body.classList.toggle('time-capsule');
+    document.body.classList.remove('cyberpunk', 'time-capsule');
+    const isCyber = !document.body.classList.contains('cyberpunk');
+    document.body.classList.add(isCyber ? 'cyberpunk' : 'time-capsule');
   });
 
   // === AI AVATAR INTERACTIVITY ===
@@ -164,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (command.includes('about')) showTab('about');
     };
     document.addEventListener('keydown', e => {
-      if (e.key === 'v') recognition.start(); // Press 'v' to activate voice
+      if (e.key === 'v') recognition.start();
     });
   })();
 
@@ -247,4 +254,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.1 });
   revealEls.forEach(el => obs.observe(el));
+
+  // === REVEAL FALLBACK ON LOAD ===
+  window.addEventListener('load', () => {
+    revealEls.forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight) {
+        el.classList.add('visible');
+      }
+    });
+  });
 });

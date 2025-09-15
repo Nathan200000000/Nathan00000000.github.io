@@ -62,6 +62,7 @@ body {
   background-size: 400% 400%;
   animation: bgShift 20s ease infinite;
   min-height: 100vh;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 @keyframes bgShift {
   0% {background-position:0% 50%;}
@@ -70,6 +71,11 @@ body {
 }
 
 h1,h2,h3 { font-family: 'Poppins', sans-serif; }
+
+:focus {
+  outline: 2px dashed var(--accent);
+  outline-offset: 4px;
+}
 
 /* === HEADER === */
 header.site-header {
@@ -80,6 +86,7 @@ header.site-header {
   padding: 0.7rem 2rem;
   border-bottom: 1px solid #30363d;
   z-index: 1000;
+  transition: background 0.4s ease;
 }
 .brand { font-size: 1.6rem; font-weight: 700; color: var(--heading); }
 
@@ -106,6 +113,14 @@ header.site-header {
   cursor: pointer;
   color: var(--accent);
   margin-left: 1rem;
+}
+
+/* === VOICE HINT === */
+.voice-hint {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--accent);
+  margin: 1rem 0;
 }
 
 /* === CONTAINER === */
@@ -178,6 +193,21 @@ header.site-header {
 .card img { width:100%; height:160px; object-fit:cover; }
 .card p { padding:.8rem; text-align:center; font-weight:600; color:var(--text); }
 
+/* === CAROUSEL === */
+.slides {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+.slide {
+  flex: 0 0 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.slide.active {
+  opacity: 1;
+}
+
 /* === MODAL === */
 .modal {
   position:fixed; inset:0;
@@ -238,9 +268,38 @@ header.site-header {
   align-items: center;
   animation: float 3s ease-in-out infinite;
 }
+.speech-bubble {
+  margin-top: 0.5rem;
+  background: var(--bg2);
+  color: var(--accent);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  box-shadow: 0 0 10px rgba(88,166,255,0.3);
+  transition: background 0.3s ease, color 0.3s ease;
+}
 
 @keyframes float {
   0% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
   100% { transform: translateY(0); }
+}
+
+/* === FOOTER === */
+.site-footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: var(--text);
+  border-top: 1px solid #30363d;
+  background: var(--bg2);
+  transition: background 0.4s ease;
+}
+
+/* === REDUCED MOTION === */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }

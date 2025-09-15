@@ -17,11 +17,11 @@
   <header class="site-header">
     <div class="brand">Nathan</div>
     <nav class="main-nav" aria-label="Main menu">
-      <ul>
-        <li><button class="menu-item active" data-target="home">Home</button></li>
-        <li><button class="menu-item" data-target="projects">Projects</button></li>
-        <li><button class="menu-item" data-target="info">Info</button></li>
-        <li><button class="menu-item" data-target="about">About</button></li>
+      <ul role="tablist">
+        <li><button role="tab" aria-selected="true" aria-controls="home" class="menu-item active" data-target="home">Home</button></li>
+        <li><button role="tab" aria-selected="false" aria-controls="projects" class="menu-item" data-target="projects">Projects</button></li>
+        <li><button role="tab" aria-selected="false" aria-controls="info" class="menu-item" data-target="info">Info</button></li>
+        <li><button role="tab" aria-selected="false" aria-controls="about" class="menu-item" data-target="about">About</button></li>
       </ul>
     </nav>
     <div class="theme-controls">
@@ -30,9 +30,12 @@
     </div>
   </header>
 
+  <!-- Voice Hint -->
+  <p class="voice-hint">🎙️ Press “V” to activate voice commands</p>
+
   <!-- AI Avatar Assistant -->
   <div id="ai-avatar" class="floating-avatar">
-    <img src="images/avatar.gif" alt="AI Nathan" />
+    <img src="images/profile1.gif" alt="AI Nathan" />
     <div class="speech-bubble">Ask me anything!</div>
   </div>
 
@@ -73,9 +76,9 @@
       <div class="carousel" id="carousel">
         <button class="carousel-btn prev" aria-label="Previous">‹</button>
         <div class="slides">
-          <img class="slide" src="images/profile1" alt="Project 1 screenshot"> 
-          <img class="slide" src="images/profile1.jpg" alt="Project 2 screenshot">
-          <img class="slide" src="images/profile1.jpg" alt="Project 3 screenshot">
+          <img class="slide" src="images/profile1.jpg" alt="Project 1 screenshot"> 
+          <img class="slide" src="images/profile2.jpg" alt="Project 2 screenshot">
+          <img class="slide" src="images/profile3.jpg" alt="Project 3 screenshot">
         </div>
         <button class="carousel-btn next" aria-label="Next">›</button>
       </div>
@@ -90,15 +93,15 @@
       <!-- Gallery -->
       <div class="gallery" id="gallery">
         <div class="card tilt" data-category="web">
-          <img src="images/profile1" alt="Web App 1 screenshot">
+          <img src="images/profile1.jpg" alt="Web App 1 screenshot">
           <p>Web App 1</p>
         </div>
         <div class="card tilt" data-category="web">
-          <img src="profile1.jpg" alt="Web App 2 screenshot">
+          <img src="images/profile2.jpg" alt="Web App 2 screenshot">
           <p>Web App 2</p>
         </div>
         <div class="card tilt" data-category="game">
-          <img src="images/profile1.jpg" alt="Game 1 screenshot">
+          <img src="images/profile3.jpg" alt="Game 1 screenshot">
           <p>Game 1</p>
         </div>
       </div>
