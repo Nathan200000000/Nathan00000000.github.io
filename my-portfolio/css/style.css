@@ -120,14 +120,6 @@ header.site-header {
   margin-left: 1rem;
 }
 
-/* === VOICE HINT === */
-.voice-hint {
-  text-align: center;
-  font-size: 0.9rem;
-  color: var(--accent);
-  margin: 1rem 0;
-}
-
 /* === CONTAINER === */
 .container {
   max-width: var(--max-width);
