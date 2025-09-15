@@ -248,3 +248,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// pseudo-code
+slides[index].classList.add('active');
