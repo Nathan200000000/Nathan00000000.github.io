@@ -8,11 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const tabs = $$('.menu-item');
   const sections = $$('.tab-content');
   const showTab = id => {
-    sections.forEach(s => s.id === id ? s.classList.remove('hidden') : s.classList.add('hidden'));
+    sections.forEach(s =>
+      s.id === id ? s.classList.remove('hidden') : s.classList.add('hidden')
+    );
     tabs.forEach(t => {
-      const isActive = t.dataset.target === id;
-      t.classList.toggle('active', isActive);
-      t.setAttribute('aria-selected', isActive);
+      const active = t.dataset.target === id;
+      t.classList.toggle('active', active);
+      t.setAttribute('aria-selected', active);
     });
     if (id === 'projects') startProjectAnimations();
   };
@@ -24,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // === TYPEWRITER (HOME) ===
   (function typewriterHome() {
-    const el = $('#typewriter');
+    const el = $('#typewriter-main'); // ✅ match updated HTML
     if (!el) return;
     const txt = "Web developer • problem solver • learner";
     el.textContent = '';
@@ -134,12 +136,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // === TIME CAPSULE / CYBERPUNK TOGGLE ===
   $('#time-capsule-toggle')?.addEventListener('click', () => {
-    document.body.classList.remove('cyberpunk', 'time-capsule');
-    const isCyber = !document.body.classList.contains('cyberpunk');
-    document.body.classList.add(isCyber ? 'cyberpunk' : 'time-capsule');
+    const body = document.body;
+    const isCyber = body.classList.contains('cyberpunk');
+    // ✅ Proper toggle between the two
+    body.classList.toggle('cyberpunk', !isCyber);
+    body.classList.toggle('time-capsule', isCyber);
   });
 
-  // === AI AVATAR INTERACTIVITY ===
+  // === AI AVATAR ===
   (function aiAvatar() {
     const avatar = $('#ai-avatar');
     const bubble = avatar?.querySelector('.speech-bubble');
@@ -224,7 +228,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     window.addEventListener('resize', resize);
     resize();
-
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
       ctx.fillStyle = '#00ffe7';
@@ -255,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.1 });
   revealEls.forEach(el => obs.observe(el));
 
-  // === REVEAL FALLBACK ON LOAD ===
+  // === REVEAL FALLBACK ===
   window.addEventListener('load', () => {
     revealEls.forEach(el => {
       if (el.getBoundingClientRect().top < window.innerHeight) {

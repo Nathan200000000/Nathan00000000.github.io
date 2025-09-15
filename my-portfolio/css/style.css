@@ -8,6 +8,9 @@
   --max-width: 1200px;
 }
 
+/* === UTILITY === */
+.hidden { display: none !important; } /* <-- JS toggle helper */
+
 /* === DARK THEME === */
 .dark {
   --bg: #121212;
@@ -29,15 +32,17 @@
   animation: cyberShift 25s ease infinite;
 }
 @keyframes cyberShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
 /* === TIME CAPSULE THEME === */
 .time-capsule {
   font-family: "Courier New", monospace;
-  background: repeating-linear-gradient(45deg, #000, #000 10px, #111 10px, #111 20px);
+  background: repeating-linear-gradient(
+    45deg, #000, #000 10px, #111 10px, #111 20px
+  );
   color: #00ff00;
 }
 .time-capsule .site-header,
@@ -65,12 +70,12 @@ body {
   transition: background 0.4s ease, color 0.4s ease;
 }
 @keyframes bgShift {
-  0% {background-position:0% 50%;}
-  50% {background-position:100% 50%;}
-  100% {background-position:0% 50%;}
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-h1,h2,h3 { font-family: 'Poppins', sans-serif; }
+h1,h2,h3 { font-family: 'Poppins', sans-serif; color: var(--heading); }
 
 :focus {
   outline: 2px dashed var(--accent);
@@ -91,14 +96,14 @@ header.site-header {
 .brand { font-size: 1.6rem; font-weight: 700; color: var(--heading); }
 
 /* === NAVIGATION === */
-.main-nav ul {display:flex; list-style:none; margin:0; padding:0;}
+.main-nav ul { display:flex; list-style:none; margin:0; padding:0; }
 .main-nav .menu-item {
   background:none; border:none; margin:0 .6rem;
   padding:.4rem .2rem; color:var(--text); font-size:1rem;
   cursor:pointer; position:relative; transition:color .3s;
 }
 .main-nav .menu-item:hover,
-.main-nav .menu-item.active { color:var(--accent);}
+.main-nav .menu-item.active { color:var(--accent); }
 .main-nav .menu-item::after {
   content:""; position:absolute; bottom:-4px; left:0; width:0; height:2px;
   background:var(--accent); transition:width .3s;
@@ -131,7 +136,7 @@ header.site-header {
 }
 
 /* === REVEAL ANIMATION === */
-.reveal { opacity:0; transform:translateY(20px); transition:all .6s ease;}
+.reveal { opacity:0; transform:translateY(20px); transition:all .6s ease; }
 .reveal.visible { opacity:1; transform:translateY(0); }
 
 /* === HERO SECTION === */
@@ -144,7 +149,7 @@ header.site-header {
   border: 4px solid var(--accent);
   box-shadow: 0 0 30px rgba(88,166,255,0.5);
 }
-.hero-text h1 { color:var(--heading); font-size:2.6rem; margin:0 0 .5rem;}
+.hero-text h1 { font-size:2.6rem; margin:0 0 .5rem; }
 .tagline { font-size:1.2rem; font-weight:600; color:var(--accent); margin-bottom:1rem; }
 
 /* === SKILLS === */
@@ -191,22 +196,12 @@ header.site-header {
   box-shadow: 0 0 20px rgba(88,166,255,.4);
 }
 .card img { width:100%; height:160px; object-fit:cover; }
-.card p { padding:.8rem; text-align:center; font-weight:600; color:var(--text); }
+.card p  { padding:.8rem; text-align:center; font-weight:600; }
 
 /* === CAROUSEL === */
-.slides {
-  display: flex;
-  overflow: hidden;
-  position: relative;
-}
-.slide {
-  flex: 0 0 100%;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-.slide.active {
-  opacity: 1;
-}
+.slides { display: flex; overflow: hidden; position: relative; }
+.slide  { flex: 0 0 100%; opacity: 0; transition: opacity 0.5s ease; }
+.slide.active { opacity: 1; }
 
 /* === MODAL === */
 .modal {
@@ -226,7 +221,7 @@ header.site-header {
 }
 @keyframes pop {
   from { transform: scale(.8); opacity:0; }
-  to { transform: scale(1); opacity:1; }
+  to   { transform: scale(1); opacity:1; }
 }
 
 /* === LIVE CODE EDITOR === */
@@ -278,10 +273,9 @@ header.site-header {
   box-shadow: 0 0 10px rgba(88,166,255,0.3);
   transition: background 0.3s ease, color 0.3s ease;
 }
-
 @keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-20px); }
   100% { transform: translateY(0); }
 }
 

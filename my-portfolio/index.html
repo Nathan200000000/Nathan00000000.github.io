@@ -3,10 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Nathan's personal portfolio – web developer, problem solver, and creative builder.">
   <title>Nathan's Portfolio</title>
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -16,14 +21,25 @@
   <!-- Header -->
   <header class="site-header">
     <div class="brand">Nathan</div>
+
+    <!-- Proper tablist/tabpanel ARIA pattern -->
     <nav class="main-nav" aria-label="Main menu">
       <ul role="tablist">
-        <li><button role="tab" aria-selected="true" aria-controls="home" class="menu-item active" data-target="home">Home</button></li>
-        <li><button role="tab" aria-selected="false" aria-controls="projects" class="menu-item" data-target="projects">Projects</button></li>
-        <li><button role="tab" aria-selected="false" aria-controls="info" class="menu-item" data-target="info">Info</button></li>
-        <li><button role="tab" aria-selected="false" aria-controls="about" class="menu-item" data-target="about">About</button></li>
+        <li>
+          <button role="tab" aria-selected="true" aria-controls="home" class="menu-item active" data-target="home">Home</button>
+        </li>
+        <li>
+          <button role="tab" aria-selected="false" aria-controls="projects" class="menu-item" data-target="projects">Projects</button>
+        </li>
+        <li>
+          <button role="tab" aria-selected="false" aria-controls="info" class="menu-item" data-target="info">Info</button>
+        </li>
+        <li>
+          <button role="tab" aria-selected="false" aria-controls="about" class="menu-item" data-target="about">About</button>
+        </li>
       </ul>
     </nav>
+
     <div class="theme-controls">
       <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
       <button id="time-capsule-toggle" class="theme-toggle" aria-label="Toggle Time Capsule">🕰️</button>
@@ -42,7 +58,7 @@
   <!-- Main Content -->
   <main class="container">
     <!-- HOME -->
-    <section id="home" class="tab-content reveal">
+    <section id="home" role="tabpanel" class="tab-content reveal">
       <div class="hero">
         <picture>
           <source media="(max-width:600px)" srcset="images/profile-small.jpg">
@@ -50,7 +66,7 @@
         </picture>
         <div class="hero-text">
           <h1>Hello — I'm Nathan</h1>
-          <p class="tagline" id="typewriter">Web developer • problem solver • learner</p>
+          <p class="tagline" id="typewriter-main">Web developer • problem solver • learner</p>
           <p>🔥 Code-slinger • Creative thinker • Digital builder</p>
         </div>
       </div>
@@ -69,7 +85,7 @@
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects" class="tab-content hidden reveal">
+    <section id="projects" role="tabpanel" class="tab-content hidden reveal">
       <h2 class="gradient-text">Projects & Interactive demos</h2>
 
       <!-- Carousel -->
@@ -137,24 +153,24 @@
     </section>
 
     <!-- INFO -->
-    <section id="info" class="tab-content hidden reveal">
+    <section id="info" role="tabpanel" class="tab-content hidden reveal">
       <h2>Professional Info</h2>
       <article class="experience">
         <h3>Role — Company</h3>
         <p>Dates · Short description of responsibilities and accomplishments.</p>
       </article>
-      <section class="more-skills">
+      <div class="more-skills">
         <h3>Skills & Expertise</h3>
         <ul>
           <li>JavaScript (vanilla) — DOM, events, async</li>
           <li>HTML5 / CSS3 — responsive design</li>
           <li>Git / GitHub — Pages hosting</li>
         </ul>
-      </section>
+      </div>
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="tab-content hidden reveal">
+    <section id="about" role="tabpanel" class="tab-content hidden reveal">
       <h2>About Me</h2>
       <p>🎮 <strong>Outside the Code</strong> — ...</p>
     </section>
